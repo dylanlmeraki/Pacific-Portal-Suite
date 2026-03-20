@@ -51,15 +51,15 @@ export default function About() {
 
       <section className="py-20 px-6 bg-white border-b border-slate-200" data-testid="section-company-story">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-20">
-            <AnimatedSection direction="up" className="text-center mb-12">
+          <div className="mb-14">
+            <AnimatedSection direction="up" className="text-center mb-10">
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 mb-6 tracking-tight" data-testid="text-who-we-are">
                 Who We Are
               </h2>
               <div className="w-20 sm:w-32 h-1 bg-gradient-to-r from-cyan-200 via-blue-500 to-cyan-200 mx-auto mb-8 rounded-full"></div>
             </AnimatedSection>
 
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div className="grid lg:grid-cols-2 gap-8 items-start">
               <AnimatedSection direction="left">
                 <div className="space-y-4 text-lg text-slate-700 leading-relaxed font-light text-center lg:text-left">
                 <p>
@@ -120,7 +120,7 @@ in a timely manner.
               <ServiceCardsGrid />
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-8 items-center">
               <AnimatedSection direction="left" className="order-2 lg:order-1">
                 <div className="aspect-[4/3] rounded-md overflow-hidden shadow-2xl border-4 border-slate-100">
                   <img
