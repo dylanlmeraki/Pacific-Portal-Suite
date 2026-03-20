@@ -1,10 +1,28 @@
-.marketing-portal {
-  --marketing-primary: #3F4555;
-  --marketing-accent: #0F172A;
-  --marketing-bg: #FFFFFF;
-  --marketing-cyan: #06B6D4;
-  --marketing-orange: #F97316;
-}
+  .marketing-portal {
+    /* Brand core */
+    --pe-navy: #161D30;
+    --pe-blue: #2253DA;
+    --pe-blue-bright: #2F8BFF;
+    --pe-blue-light: #387CF3;
+
+    --pe-cyan: #0DA7E7;
+    --pe-cyan-teal: #0CB7D6;
+    --pe-teal: #13C5A5;
+
+    --pe-orange: #F5751F;
+    --pe-orange-bright: #FF9A3D;
+    --pe-amber: #FFD08A;
+
+    /* Neutral surfaces */
+    --pe-surface: #ffffff;
+    --pe-surface-2: #F7FAFC; /* cool light gray */
+    --pe-border: rgba(22, 29, 48, 0.10);
+    --pe-text: #0f172a;
+
+    /* Shadows */
+    --pe-shadow-sm: 0 6px 18px rgba(15, 23, 42, 0.08);
+    --pe-shadow-md: 0 14px 46px rgba(15, 23, 42, 0.12);
+  }
 
 .marketing-portal .blueprint-grid {
   background-image:
