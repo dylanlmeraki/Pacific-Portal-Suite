@@ -1,7 +1,6 @@
 import { useRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import type { LucideIcon } from "lucide-react";
 import { createPageUrl } from "../lib/utils";
 import {
   CheckCircle,
@@ -94,7 +93,6 @@ export function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[
   const Icon = svc.icon;
   const ref = useRef<HTMLDivElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
-  const iconRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.2 });
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -142,7 +140,6 @@ export function ServiceCard({ svc, idx, reducedMotion }: { svc: typeof SERVICES[
           <div className={c.h} style={{ background: c.gradient }} />
           <div className="p-5 sm:p-8 lg:p-10 flex flex-col items-center text-center">
             <div
-              ref={iconRef}
               className={`${c.bg} rounded-md w-10 h-10 sm:w-14 sm:h-14 lg:w-16 lg:h-16 flex items-center justify-center mb-4 sm:mb-6 lg:mb-8 transition-all duration-300 relative`}
             >
               <div
