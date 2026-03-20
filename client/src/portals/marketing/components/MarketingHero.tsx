@@ -1,4 +1,3 @@
-// client/src/portals/marketing/components/MarketingHero.tsx
 import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Media } from "./Media";
@@ -35,13 +34,13 @@ export function MarketingHero(props: {
             src={props.background.src}
             poster={props.background.poster}
             className="w-full h-full object-cover opacity-90"
+            autoplay
           />
         )}
         <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--pe-navy)] via-[color:var(--pe-navy)]/90 to-[color:var(--pe-navy)]/55" />
         <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--pe-navy)] via-transparent to-transparent opacity-70" />
       </div>
 
-      {/* Subtle technical grid */}
       <div
         className="absolute inset-0 opacity-[0.035]"
         style={{
@@ -79,8 +78,9 @@ export function MarketingHero(props: {
                          shadow-sm"
             >
               {props.primaryCta.label}
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </Link>
+
             <button
               onClick={() => scrollTo(props.secondaryCta.toHash)}
               className="inline-flex items-center justify-center gap-2.5
