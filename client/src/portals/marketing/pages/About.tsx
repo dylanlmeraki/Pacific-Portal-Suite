@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { createPageUrl } from "../lib/utils";
-import { Award, Users, Target, Shield, ArrowRight, Building2, HardHat, ClipboardCheck, FileText, CheckCircle } from "lucide-react";
+import { Award, Users, Target, Shield } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import AnimatedSection from "../components/AnimatedSection";
 import AnimatedCounter from "../components/AnimatedCounter";
