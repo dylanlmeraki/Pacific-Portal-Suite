@@ -1,8 +1,6 @@
-// client/src/portals/marketing/components/MarketingHeader.tsx
-import { useEffect, useId, useState } from "react";
+import { useEffect, useId, useMemo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, Phone } from "lucide-react";
-import { createPageUrl } from "../lib/utils";
 
 type NavItem =
   | { label: string; type: "route"; to: string }
@@ -22,6 +20,9 @@ export function MarketingHeader(props: {
   const location = useLocation();
   const mobilePanelId = useId();
 
+  const isHome = location.pathname === "/";
+  const activePath = useMemo(() => location.pathname, [location.pathname]);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -30,14 +31,15 @@ export function MarketingHeader(props: {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   function goHash(hash: `#${string}`) {
     setMobileOpen(false);
-    // If not on home, navigate to home + hash.
-    if (location.pathname !== "/") {
-      navigate("/" + hash);
+    if (!isHome) {
+      navigate({ pathname: "/", hash });
       return;
     }
     const el = document.querySelector(hash);
@@ -54,7 +56,7 @@ export function MarketingHeader(props: {
       ].join(" ")}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-        <Link to={createPageUrl("Home")} className="flex items-center gap-3">
+        <Link to="/" className="flex items-center gap-3" aria-label="Go to Home">
           <img
             src={props.logoSrc}
             alt="Pacific Engineering & Construction Inc."
@@ -70,13 +72,19 @@ export function MarketingHeader(props: {
           </div>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-1">
+        <nav className="hidden lg:flex items-center gap-1" aria-label="Primary navigation">
           {props.nav.map((item) =>
             item.type === "route" ? (
               <Link
                 key={item.label}
                 to={item.to}
-                className="px-3 py-2 text-sm font-semibold text-white/75 hover:text-white rounded-md hover:bg-white/5"
+                aria-current={activePath === item.to ? "page" : undefined}
+                className={[
+                  "px-3 py-2 text-sm font-semibold rounded-md",
+                  activePath === item.to
+                    ? "text-white bg-white/10"
+                    : "text-white/75 hover:text-white hover:bg-white/5",
+                ].join(" ")}
               >
                 {item.label}
               </Link>
@@ -97,7 +105,7 @@ export function MarketingHeader(props: {
             href={props.phoneHref}
             className="flex items-center gap-2 text-sm text-white/60 hover:text-white"
           >
-            <Phone className="w-4 h-4" />
+            <Phone className="w-4 h-4" aria-hidden="true" />
             {props.phoneLabel}
           </a>
           <Link
@@ -126,17 +134,24 @@ export function MarketingHeader(props: {
         <div
           id={mobilePanelId}
           className="lg:hidden fixed inset-0 top-0 bg-[color:var(--pe-navy)] z-40"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Navigation"
         >
           <div className="flex items-center justify-between px-5 py-5 border-b border-white/10">
             <Link to="/" className="text-white font-bold" onClick={() => setMobileOpen(false)}>
               Pacific Engineering
             </Link>
-            <button className="p-2 text-white" onClick={() => setMobileOpen(false)} aria-label="Close menu">
-              <X className="w-6 h-6" />
+            <button
+              className="p-2 text-white"
+              onClick={() => setMobileOpen(false)}
+              aria-label="Close menu"
+            >
+              <X className="w-6 h-6" aria-hidden="true" />
             </button>
           </div>
 
-          <nav className="flex flex-col px-5 pt-4">
+          <nav className="flex flex-col px-5 pt-4" aria-label="Mobile navigation">
             {props.nav.map((item) =>
               item.type === "route" ? (
                 <Link
@@ -157,9 +172,10 @@ export function MarketingHeader(props: {
                 </button>
               )
             )}
+
             <div className="pt-6 flex flex-col gap-3">
               <a href={props.phoneHref} className="text-white/70 text-sm flex items-center gap-2">
-                <Phone className="w-4 h-4" />
+                <Phone className="w-4 h-4" aria-hidden="true" />
                 {props.phoneLabel}
               </a>
               <Link

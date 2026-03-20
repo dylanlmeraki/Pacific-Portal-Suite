@@ -1,5 +1,8 @@
-// client/src/portals/marketing/components/GradientBar.tsx
-export function GradientBar(props: { className?: string; height?: number; gradientCss: string }) {
+export function GradientBar(props: {
+  className?: string;
+  height?: number;
+  gradientCss: string;
+}) {
   return (
     <div
       aria-hidden="true"
