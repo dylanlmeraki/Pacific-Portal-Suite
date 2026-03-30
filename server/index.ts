@@ -123,7 +123,7 @@ app.use((req, res, next) => {
     return res.status(status).json({ message });
   });
 
-  if (process.env.NODE_ENV === "production") {
+  if (process.env.NODE_ENV === "development") {
     serveStatic(app);
   } else {
     const { setupVite } = await import("./vite");
